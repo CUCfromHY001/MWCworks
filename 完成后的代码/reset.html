@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<Title>小钊云~重置密码</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+  href="https://xiaozhaoyun.com/bootstrap.min.css">
+<!--如果严格的话，这个还要结合后台获取时间的，要不然别人刷新一下就行了。如果不严格，用个cookie也可以。-->
+<script type="text/javascript">
+var countdown=60;
+function settime(val)
+{
+  if (countdown == 0)
+  {
+    val.removeAttribute("disabled");
+    val.value="免费获取验证码";
+    countdown = 60;
+  }
+  else
+  {
+    val.setAttribute("disabled", true);
+    val.value="重新发送(" + countdown + ")";
+    countdown--;
+  }
+  setTimeout(function() {
+    settime(val)
+    },1000)
+
+}
+
+</script>
+</head>
+
+<body>
+
+<div class="container">
+<div class="jumbotron">
+  <h1 align="center">重置密码</h1>
+  <p align="center">填写必要的信息，我们将会为您重置密码</p>
+</div>
+</div>
+
+  <div align="center">
+  <div class="container">
+  <form name='form1' method="post" action="Mail.php">
+  用户名<br>
+  <input type="text" name="UserName"  >
+  <br>
+  邮箱<br>
+  <input type="text" name="Email"  >
+
+
+  </br>
+  <br>
+    <input type="submit" id="btn" value="获取验证码" onclick="settime(this)">
+  <br></br>
+</form>
+
+</div>
+
+</body>
+</html>

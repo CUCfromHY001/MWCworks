@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<title>小钊云~登录</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://xiaozhaoyun.com/bootstrap.min.css">
+  <script>
+  function firm1()
+  {
+      document.form1.submit();
+  }
+  function check()
+  {
+    if(document.getElementById("a").value!="")
+    {
+        if(document.getElementById("b").value!="")
+        {
+          btn1.disabled=false;
+        }
+      }
+  }
+  </script>
+</head>
+
+<body>
+
+<div class="container">
+<div class="jumbotron">
+  <h1 align="center">登录</h1>
+  <p align="center">请正确输入帐号和密码</p>
+</div>
+</div>
+
+  <div align="center">
+  <div class="container">
+  <form name=form1 action="login.php" method="post">
+  <br>
+  用户名:<br>
+  <input type="text" name="UserName" id='a' onkeyup="check(this)">
+  <br>
+  密码:<br>
+  <input type="password" name="password" id='b'  onkeyup="check(this)">
+  <br><br>
+  <input type="button" id="btn1" value="登录" onclick="firm1()" disabled="disabled">
+  </form>
+</div>
+
+</body>
+</html>

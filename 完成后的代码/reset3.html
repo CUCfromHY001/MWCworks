@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<title>小钊云~重置密码</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://xiaozhaoyun.com/bootstrap.min.css">
+
+
+  <script type="text/javascript">
+
+  function chkpwd(obj)
+  {
+    var t=obj.value;
+    var id=getResult(t);
+  //定义对应的消息提示
+    var msg=new Array(4);
+    msg[0]="密码过短。";
+    msg[1]="密码强度差。";
+    msg[2]="密码强度良好。";
+    msg[3]="密码强度高。";
+
+    var sty=new Array(4);
+    sty[0]=-45;
+    sty[1]=-30;
+    sty[2]=-15;
+    sty[3]=0;
+    var col = new Array(4);
+    col[0] = "gray";
+    col[1] = "#50AEDD";
+    col[2] = "#FF8213";
+    col[3] = "green";
+    //设置显示效果
+    var bImg="/img/pwdlen_dSIPeEGQWxfO.gif" //一张显示用的图片
+    var sWidth=300;
+    var sHeight=15;
+    var Bobj=document.getElementById("chkResult");
+  //欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+    Bobj.style.fontSize="12px";
+    Bobj.style.color=col[id];
+    Bobj.style.width=sWidth + "px";
+    Bobj.style.height=sHeight + "px";
+    Bobj.style.lineHeight=sHeight + "px";
+    Bobj.style.background="url(" + bImg + ") no-repeat left " + sty[id] + "px";
+    Bobj.style.textIndent="20px";
+    Bobj.innerHTML="检测提示：" + msg[id];
+    var btn1=document.getElementById('btn1');
+    if(id>=2)
+    {
+          btn1.disabled=false;
+    }
+
+  }
+  //定义检测函数,返回0/1/2/3分别代表无效/差/一般/强
+  function getResult(s)
+  {
+    if(s.length < 8)
+    {
+      if(s.length>36)
+      {
+         return 0;
+       }
+    }
+    var ls = 0;
+    if (s.match(/[a-z]/ig))
+    {
+      ls++;
+    }
+    if (s.match(/[0-9]/ig))
+    {
+      ls++;
+    }
+    if (s.match(/(.[^a-z0-9])/ig))
+    {
+      ls++;
+    }
+    if (s.length < 6 && ls > 0)
+    {
+      ls--;
+    }
+    return ls
+  }
+  function firm1() {
+          //利用对话框返回的值 （true 或者 false）
+          if(document.getElementById("a").value==document.getElementById("b").value )
+          {
+            document.form1.submit();
+          }
+          else
+          {
+            alert("两次密码输入不相同，请重新输入");
+          }
+      }
+
+  </script>
+</head>
+
+<body>
+
+<div class="container">
+<div class="jumbotron">
+  <h1 align="center">重置密码</h1>
+  <p align="center">请正确输入新密码</p>
+</div>
+</div>
+
+  <div align="center">
+  <div class="container">
+  <form name="form1" action="reset2.php" method="post">
+  <br>
+  新密码:<br>
+  <input type="password" name="pwd" onKeyUp="chkpwd(this)" id="a"/>
+  <div id="chkResult"></div>
+  确认密码:<br>
+  <input type="password" name="pwd2" id="b">
+  <br></br>
+<input type="button" value="重置密码" id="btn1" disabled="disabled" onclick="firm1()"/>
+
+  </form>
+</div>
+
+</body>
+</html>
